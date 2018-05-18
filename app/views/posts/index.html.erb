@@ -5,7 +5,13 @@
         <div class="container">
           <h1 class="display-3">Hello, world!</h1>
           <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-          <p><%= link_to 'New Post', new_post_path, :class => 'btn btn-primary btn-lg' %></p>
+          <% if user_signed_in? %>
+            <p><%= link_to 'New Post', new_post_path, :class => 'btn btn-primary btn-lg' %></p>
+            <p><%= link_to 'Logout', destroy_user_session_path, :confirm => "Are you sure?", :method => :delete, :class => 'btn btn-danger btn-lg' %></p>
+            <% else %>
+          <p><%= link_to 'Sign in Please', new_user_session_path, :class => 'btn btn-primary btn-lg' %></p>
+
+          <% end -%>
         </div>
       </div>
 <% @posts.each do |post| %>
